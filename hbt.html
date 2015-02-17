@@ -1,32 +1,36 @@
 <head>
-  <title>hbt</title>
+    <title>hbt</title>
 </head>
 
 <body>
-  <h1>Welcome to HBT Meteor Demo!</h1>
-
-  {{> hello}}
+    <h1>Welcome to HBT Meteor Demo!</h1>
+    {{> hello}}
 </body>
 
 <template name="hello">
-  <h3>Book</h3>
+    <h3>Book</h3>
     <table>
-    <thead>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Category</th>
-    </thead>
-    <tbody>
-    {{#each book}}
-        <tr>
+        <thead>
+            <th style='visibility: hidden'>></th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Category</th>
+        </thead>
+        <tbody>
+            {{#each book}} {{> displayBook}} {{/each}}
+        </tbody>
+    </table>
+
+</template>
+
+<template name="displayBook">
+    <tr>
+        <td class='bookid' style='visibility: hidden'>{{this._id}}</td>
         <td>{{this.author}}</td>
         <td>{{this.title}}</td>
         <td>{{this.classification}}</td>
-        
-        </tr>
-    {{/each}}    
-        
-    </tbody>
-    </table>
-
+        <td>
+            <button class='remove'>REMOVE</button>
+        </td>
+    </tr>
 </template>

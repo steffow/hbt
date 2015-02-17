@@ -10,10 +10,11 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.hello.events({
-        'click button': function () {
-            // increment the counter when button is clicked
-            Session.set('counter', Session.get('counter') + 1);
+    Template.displayBook.events({
+        'click .remove': function(event, template) {
+            var bookid = template.find('.bookid').childNodes[0].textContent;
+            BooksCollection.remove({_id: bookid});
+            return false;
         }
     });
 }
