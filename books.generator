@@ -3,6 +3,8 @@ export MONGO_URL=mongodb://localhost/hbt
 Import using: mongoimport --db hbt --collection books --type json --file ~/CodeWarrior/Meteor/hbt/books.json --jsonArray
 
 
+A generator file for use with http://www.json-generator.com
+
 [
   '{{repeat(500)}}',
   {

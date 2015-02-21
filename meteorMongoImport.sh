@@ -1,40 +1,10 @@
 #!/bin/bash
-#                    __                           
-#   _____    ____  _/  |_   ____    ____  _______ 
-#  /     \ _/ __ \ \   __\_/ __ \  /  _ \ \_  __ \
-# |  Y Y  \\  ___/  |  |  \  ___/ (  <_> ) |  | \/
-# |__|_|  / \___  > |__|   \___  > \____/  |__|   
-#      \/      \/             \/                 
-#
-#     .___                        
-#   __| _/ __ __   _____  ______  
-#  / __ | |  |  \ /     \ \____ \ 
-# / /_/ | |  |  /|  Y Y  \|  |_> >
-# \____ | |____/ |__|_|  /|   __/ 
-#      \/              \/ |__|    
-#
-# The meteor.com Hot Dump 2-step 
-# Dump a mongo db from a live meteor app to a local dump dir. 
-#
-# Splits up the output of:
-#    meteor mongo $METEOR_DOMAIN --url 
-# and pushes it into 
-#    mongodump -u $MONGO_USER -h $MONGO_DOMAIN -d $MONGO_DB -p "${MONGO_PASSWORD}"
-# 
-# Doing so by hand is tedious as the password in the url is only valid for 60 seconds.
-#
-# Requires 
-# - meteor  (tested on 0.5.9)
-# - mongodb (tested in 2.4.0)
+
 #
 # Usage
-#    ./meteor-dump.sh goto
+#    ./meteorMongoImport.sh goto
 #
-# If all goes well it'll create a dump folder in the current working directory.
-#
-# By @olizilla
-# On 2013-03-20. Using this script after it's sell by date may void your warranty.
-#
+
 
 METEOR_DOMAIN="$1"
 
@@ -75,7 +45,7 @@ then
 	echo "MONGO_DOMAIN $MONGO_DOMAIN"
 	echo "MONGO_DB $MONGO_DB"
 
-	#e.g mongodump -u client -h skybreak.member0.mongolayer.com:27017 -d goto_meteor_com -p "guid-style-password"
+	
 	mongoimport -u $MONGO_USER -h $MONGO_DOMAIN -d $MONGO_DB -p "${MONGO_PASSWORD}" --collection books --type json --file ~/CodeWarrior/Meteor/hbt/books.json --jsonArray
 else
 	echo "Sorry. Couldn't import data; your details from the url: ${MONGO_URL}"
